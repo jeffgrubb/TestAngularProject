@@ -16,7 +16,7 @@ myModule.filter('filterBy', function() {
 
         angular.forEach(items, function(item){
 
-            if(item.toLowerCase().indexOf(searchString) !== -1) {
+            if(item.email.toLowerCase().indexOf(searchString) !== -1) {
                 result.push(item);
             }
         });
@@ -25,22 +25,32 @@ myModule.filter('filterBy', function() {
     };
 });
 
-function TestController($scope) {
+function TestController($scope, $http) {
 
-    $scope.contacts = ["me@email.com", "hello@world.com"];
+
+
+    $http({method: 'POST', url: 'Data.json'}).success(function(data)
+    {
+        $scope.contacts = data; // response data
+    });
 
     $scope.add = function() {
 
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-        if(!re.test($scope.newcontact)) {
-            alert($scope.newcontact + " is not a valid email address");
+        if(!re.test($scope.newcontact.email)) {
+            alert($scope.newcontact.email + " is not a valid email address");
             return;
         }
 
         $scope.contacts.push($scope.newcontact);
-        $scope.newcontact="";
+        $scope.newcontact=[];
     }
+}
+
+function GetData($scope, $http)
+{
+
 }
 
 /*app.filter('searchFor', function() {
