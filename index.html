@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,15 +9,16 @@
 </head>
 <body>
 
-Write some text: <input type="text" ng-model="sometext">
+<div ng-app="myFilter" ng-controller="TestController">
 
-<div id="contacts" ng-controller="TestController">
-
+    Email: <input type="text" ng-model="newcontact"/>
+    <button ng-click="add()">Add Contact</button>
     <h1>Contacts</h1>
     <ul>
-        <li ng-repeat="contact in contacts"> {{contact}}</li>
+        <li ng-repeat="contact in contacts | filterBy:searchString"> {{contact}}</li>
     </ul>
 
+    Filter: <input type="text" ng-model="searchString" placeholder="Search String"/>
 </div>
 
 </body>
