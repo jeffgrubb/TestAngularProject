@@ -43,6 +43,11 @@ function TestController($scope, $http) {
             return;
         }
 
+        if(!$scope.newcontact.name) {
+            alert("Name cannot be blank");
+            return;
+        }
+
         $scope.contacts.push($scope.newcontact);
         $scope.newcontact=[];
     }

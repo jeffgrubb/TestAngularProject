@@ -11,7 +11,9 @@
 
 <div ng-app="myFilter" ng-controller="TestController">
 
-    Email: <input type="text" ng-model="newcontact"/>
+    Name: <input type="text" ng-model="newcontact.name"/>
+    Email: <input type="text" ng-model="newcontact.email"/>
+
     <button ng-click="add()">Add Contact</button>
     <h1>Contacts</h1>
     <ul>
